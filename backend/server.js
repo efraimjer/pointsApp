@@ -73,6 +73,13 @@ routes.route('/update/:id').post(function(req, res){
             client.document = req.body.document;
             client.pontuation = req.body.pontuation;
             client.adress = req.body.adress;
+
+            client.save().then(client => {
+                res.json('Client updated a' + req.body);
+            })
+            .catch(err => {
+                res.status(400).send("Client not possible");
+            });
         }
     })
 })
